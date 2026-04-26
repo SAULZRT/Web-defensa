@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DarKlinca Defense | Equipos de Defensa Personal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">DarKlinca <span>Defense</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="cart-container">
+                <button id="cart-btn" onclick="showCart()" class="btn btn-secondary">
+                    Carrito (<span id="cart-count">0</span>)
+                </button>
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Protege lo que <span>Importa</span></h1>
+                    <p>Equipos de defensa personal de alta calidad para tu seguridad.</p>
+                    <a href="#productos" class="btn btn-primary">Ver Productos</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="productos" class="products">
+            <div class="container">
+                <h2 class="section-title text-center">Nuestros <span>Productos</span></h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="card-image" style="background-image: url('images/pepper-spray.jpg'), linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));"></div>
+                        <div class="card-content">
+                            <h3>Spray de Pimienta</h3>
+                            <p>Spray de defensa personal con fórmula potente y alcance efectivo.</p>
+                            <div class="price">$25.00</div>
+                            <a href="#" class="btn btn-secondary" onclick="addToCart('Spray de Pimienta', '25.00')">Comprar Ahora</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="card-image" style="background-image: url('images/taser.jpg'), linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));"></div>
+                        <div class="card-content">
+                            <h3>Taser Eléctrico</h3>
+                            <p>Dispositivo de electrochoque no letal para inmovilizar amenazas.</p>
+                            <div class="price">$150.00</div>
+                            <a href="#" class="btn btn-secondary" onclick="addToCart('Taser Eléctrico', '150.00')">Comprar Ahora</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="card-image" style="background-image: url('images/knife.jpg'), linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));"></div>
+                        <div class="card-content">
+                            <h3>Cuchillo Táctico</h3>
+                            <p>Cuchillo de supervivencia con hoja de acero inoxidable y mango ergonómico.</p>
+                            <div class="price">$80.00</div>
+                            <a href="#" class="btn btn-secondary" onclick="addToCart('Cuchillo Táctico', '80.00')">Comprar Ahora</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="card-image" style="background-image: url('images/alarm.jpg'), linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));"></div>
+                        <div class="card-content">
+                            <h3>Alarma Personal</h3>
+                            <p>Alarma de alta decibeles con luz estroboscópica para disuadir atacantes.</p>
+                            <div class="price">$15.00</div>
+                            <a href="#" class="btn btn-secondary" onclick="addToCart('Alarma Personal', '15.00')">Comprar Ahora</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="card-image" style="background-image: url('images/baton.jpg'), linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));"></div>
+                        <div class="card-content">
+                            <h3>Bastón Extensible</h3>
+                            <p>Bastón telescópico de acero para defensa personal y movilidad.</p>
+                            <div class="price">$40.00</div>
+                            <a href="#" class="btn btn-secondary" onclick="addToCart('Bastón Extensible', '40.00')">Comprar Ahora</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="card-image" style="background-image: url('images/vest.jpg'), linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));"></div>
+                        <div class="card-content">
+                            <h3>Chaleco Antibalas</h3>
+                            <p>Chaleco de protección balística nivel IIIA para máxima seguridad.</p>
+                            <div class="price">$300.00</div>
+                            <a href="#" class="btn btn-secondary" onclick="addToCart('Chaleco Antibalas', '300.00')">Comprar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonios" class="testimonials">
+            <div class="container">
+                <h2 class="section-title text-center">Testimonios de <span>Clientes</span></h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>"Los productos de DarKlinca Defense me han dado la tranquilidad que necesitaba. Altamente recomendados."</p>
+                        <cite>- María González</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Calidad excepcional y servicio rápido. Mi spray de pimienta llegó justo a tiempo."</p>
+                        <cite>- Carlos Rodríguez</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Como profesional de seguridad, confío en sus equipos. Siempre cumplen con las expectativas."</p>
+                        <cite>- Ana López</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre-nosotros" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2>Nuestra <span>Misión</span></h2>
+                    <p class="quote">"No solo vendemos productos, protegemos vidas."</p>
+                    <p>En DarKlinca Defense, nos dedicamos a proporcionar equipos de defensa personal de la más alta calidad. Nuestra experiencia en seguridad y tácticas de defensa nos permite ofrecer productos confiables para protegerte a ti y a tus seres queridos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact">
+            <div class="container">
+                <h2 class="section-title text-center">Contacto</h2>
+                <div class="contact-wrapper">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Nombre Completo" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Tu Mensaje" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-cart" class="close">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <ul id="cart-items"></ul>
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="btn btn-primary" onclick="alert('Para completar tu compra, contactanos por email o teléfono')">Solicitar Cotización</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">DarKlinca Defense</div>
+                <div class="footer-social">
+                    <a href="#">FB</a>
+                    <a href="#">IG</a>
+                    <a href="#">TW</a>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 DarKlinca Defense. Todos los derechos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Shopping cart functionality (simplified)
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = document.getElementById('cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.getElementById('close-cart');
+
+        function updateCart() {
+            cartCount.textContent = cart.length;
+            cartItems.innerHTML = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${item.name} - $${item.price}</span>
+                    <button onclick="removeFromCart(${index})">Eliminar</button>
+                `;
+                cartItems.appendChild(li);
+                total += parseFloat(item.price);
+            });
+            cartTotal.textContent = total.toFixed(2);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+            showNotification('Producto agregado al carrito');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function showCart() {
+            cartModal.style.display = 'block';
+        }
+
+        function hideCart() {
+            cartModal.style.display = 'none';
+        }
+
+        closeCart.addEventListener('click', hideCart);
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) hideCart();
+        });
+
+        // Form validation
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const message = this.querySelector('textarea').value;
+
+            if (!name || !email || !message) {
+                showNotification('Por favor, completa todos los campos', 'error');
+                return;
+            }
+
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                showNotification('Por favor, ingresa un email válido', 'error');
+                return;
+            }
+
+            showNotification('Mensaje enviado exitosamente');
+            this.reset();
+        });
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Initialize cart on load
+        updateCart();
+    </script>
+</body>
+</html>
