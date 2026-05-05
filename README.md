@@ -172,4 +172,4 @@ deploy.bat
 ### Otras opciones gratuitas:
 - **Netlify:** [netlify.com](https://netlify.com) - 100GB/mes
 - **Vercel:** [vercel.com](https://vercel.com) - 100GB/mes
-- **Firebase:** [firebase.google.com](https://firebase.google.com) - 10GB/mes# Web-defensa
+- **Firebase:** [firebase.google.com](https://firebase.google.com) - 10GB/mes
