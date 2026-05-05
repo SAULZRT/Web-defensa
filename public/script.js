@@ -12,6 +12,7 @@ const closeCart = document.getElementById('close-cart');
 const clearCart = document.getElementById('clear-cart');
 const quoteButton = document.getElementById('quote-button');
 const contactForm = document.querySelector('.contact-form');
+const contactEmail = 'darklincaservices@gmail.com';
 
 function money(value) {
     return Number(value).toFixed(2);
@@ -116,6 +117,10 @@ function getContactInfo() {
         email: contactForm.querySelector('input[name="email"]')?.value.trim() || '',
         phone: contactForm.querySelector('input[name="phone"]')?.value.trim() || '',
         location: contactForm.querySelector('input[name="location"]')?.value.trim() || '',
+        delivery: contactForm.querySelector('select[name="delivery"]')?.value || '',
+        payment: contactForm.querySelector('select[name="payment"]')?.value || '',
+        interest: contactForm.querySelector('select[name="interest"]')?.value || '',
+        ageConfirm: contactForm.querySelector('input[name="ageConfirm"]')?.checked || false,
         message: contactForm.querySelector('textarea[name="message"]')?.value.trim() || ''
     };
 }
@@ -127,6 +132,14 @@ function validateContact(contact, requireMessage = false) {
 
     if (!/\S+@\S+\.\S+/.test(contact.email)) {
         return 'Introduce un correo electrónico válido.';
+    }
+
+    if (!contact.delivery) {
+        return 'Selecciona el tipo de entrega.';
+    }
+
+    if (!contact.ageConfirm) {
+        return 'Confirma que tienes 18 años o más.';
     }
 
     if (requireMessage && !contact.message) {
@@ -147,11 +160,15 @@ function buildInquiryText(contact, includeCart = false) {
         'Solicitud de información:',
         `Nombre: ${contact.name}`,
         `Email: ${contact.email}`,
-        `Teléfono: ${contact.phone}`
+        `Teléfono: ${contact.phone}`,
+        `Tipo de entrega: ${contact.delivery}`
     ];
 
     if (contact.location) lines.push(`Ubicación: ${contact.location}`);
+    if (contact.payment) lines.push(`Pago preferido: ${contact.payment}`);
+    if (contact.interest) lines.push(`Producto de interés: ${contact.interest}`);
     if (contact.message) lines.push(`Mensaje: ${contact.message}`);
+    lines.push('Edad confirmada: 18 años o más');
     if (includeCart) lines.push('', 'Productos:', formatCartForQuote(cart));
 
     return lines.join('\n');
@@ -165,6 +182,29 @@ async function copyInquiryToClipboard(text) {
     } catch (error) {
         return false;
     }
+}
+
+async function sendInquiry(contact, text, includeCart) {
+    const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            contact,
+            cart: includeCart ? cart : [],
+            text
+        })
+    });
+
+    if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || 'No se pudo enviar la consulta');
+    }
+}
+
+function openMailFallback(text) {
+    const subject = encodeURIComponent('Consulta DarKlinca Defense');
+    const body = encodeURIComponent(text);
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
 }
 
 async function prepareInquiry(includeCart = false) {
@@ -181,15 +221,31 @@ async function prepareInquiry(includeCart = false) {
     }
 
     const text = buildInquiryText(contact, includeCart);
-    const copied = await copyInquiryToClipboard(text);
+    const submitButton = contactForm?.querySelector('button[type="submit"]');
+    if (submitButton) submitButton.disabled = true;
+    if (quoteButton) quoteButton.disabled = true;
 
-    if (copied) {
-        showNotification('Consulta preparada y copiada al portapapeles');
-    } else {
-        showNotification('Consulta preparada. Copia los datos para enviarlos por tu canal de contacto.');
+    try {
+        await sendInquiry(contact, text, includeCart);
+        showNotification('Consulta enviada correctamente');
+        if (!includeCart) contactForm.reset();
+        if (includeCart) {
+            cart = [];
+            updateCart();
+            hideCart();
+        }
+    } catch (error) {
+        const copied = await copyInquiryToClipboard(text);
+        openMailFallback(text);
+        showNotification(copied
+            ? 'No se pudo enviar automáticamente. Se abrió el correo y se copió la consulta.'
+            : 'No se pudo enviar automáticamente. Se abrió el correo como alternativa.',
+            'error'
+        );
+    } finally {
+        if (submitButton) submitButton.disabled = false;
+        if (quoteButton) quoteButton.disabled = false;
     }
-
-    if (includeCart) hideCart();
 }
 
 function showNotification(message, type = 'success') {
