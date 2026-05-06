@@ -1,0 +1,17 @@
+{
+    "name": "DarKlinca Defense",
+    "short_name": "DarKlinca",
+    "description": "Catálogo de artículos de defensa personal responsable",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#070707",
+    "theme_color": "#e60000",
+    "icons": [
+        {
+            "src": "images/puño_dis.jpeg",
+            "sizes": "192x192",
+            "type": "image/jpeg"
+        }
+    ]
+}</content>
+<parameter name="filePath">c:\Users\user\Desktop\web-defensa\public\manifest.json

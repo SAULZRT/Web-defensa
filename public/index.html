@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="DarKlinca Defense: catálogo informativo de artículos de defensa personal con asesoría responsable, verificación previa y cumplimiento de normativa local.">
+    <meta name="keywords" content="defensa personal, artículos de seguridad, venta responsable, Valladolid, normativa local">
+    <meta name="author" content="DarKlinca Defense">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="DarKlinca Defense | Defensa Personal Responsable">
+    <meta property="og:description" content="Catálogo de artículos de defensa personal con venta responsable y asesoría previa.">
+    <meta property="og:image" content="images/puño_dis.jpeg">
+    <meta property="og:url" content="https://darklinca-defense.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="manifest.json">
     <title>DarKlinca Defense | Defensa Personal Responsable</title>
     <link rel="stylesheet" href="style.css?v=19">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +28,9 @@
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#productos">Catálogo</a></li>
                     <li><a href="#proceso">Proceso</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
                     <li><a href="#legal">Legal</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contacto">Contacto</a></li>
@@ -75,6 +87,9 @@
                 <div class="section-heading">
                     <h2 class="section-title">Catálogo <span>disponible</span></h2>
                     <p>Los precios son orientativos. La venta puede estar sujeta a edad mínima, restricciones por zona y comprobaciones adicionales.</p>
+                    <div class="search-container">
+                        <input type="text" id="product-search" placeholder="Buscar productos..." aria-label="Buscar productos">
+                    </div>
                 </div>
                 <div class="catalog-notice">
                     <strong>Garantía incluida:</strong> todos los productos tienen garantía de 10 días naturales desde la compra por rotura o fallo del producto. No cubre cambios por arrepentimiento.
@@ -96,7 +111,11 @@
                                 <li>Consulta previa requerida</li>
                             </ul>
                             <div class="price">$40.00</div>
-                            <button type="button" class="btn btn-secondary add-cart" data-name="Pulse X" data-price="40.00">Añadir al carrito</button>
+                            <div class="product-actions">
+                                <button type="button" class="btn btn-outline add-wishlist" data-name="Pulse X">❤️</button>
+                                <button type="button" class="btn btn-outline share-btn" data-name="Pulse X" data-url="https://darklinca-defense.com#productos">📤</button>
+                                <button type="button" class="btn btn-secondary add-cart" data-name="Pulse X" data-price="40.00">Añadir al carrito</button>
+                            </div>
                         </div>
                     </article>
                     <article class="product-card">
@@ -109,7 +128,11 @@
                                 <li>Pedido bajo confirmación</li>
                             </ul>
                             <div class="price">$10.00</div>
-                            <button type="button" class="btn btn-secondary add-cart" data-name="Annihilator" data-price="10.00">Añadir al carrito</button>
+                            <div class="product-actions">
+                                <button type="button" class="btn btn-outline add-wishlist" data-name="Annihilator">❤️</button>
+                                <button type="button" class="btn btn-outline share-btn" data-name="Annihilator" data-url="https://darklinca-defense.com#productos">📤</button>
+                                <button type="button" class="btn btn-secondary add-cart" data-name="Annihilator" data-price="10.00">Añadir al carrito</button>
+                            </div>
                         </div>
                     </article>
                     <article class="product-card">
@@ -122,7 +145,11 @@
                                 <li>Información bajo solicitud</li>
                             </ul>
                             <div class="price">$6.00</div>
-                            <button type="button" class="btn btn-secondary add-cart" data-name="Painwave" data-price="6.00">Añadir al carrito</button>
+                            <div class="product-actions">
+                                <button type="button" class="btn btn-outline add-wishlist" data-name="Painwave">❤️</button>
+                                <button type="button" class="btn btn-outline share-btn" data-name="Painwave" data-url="https://darklinca-defense.com#productos">📤</button>
+                                <button type="button" class="btn btn-secondary add-cart" data-name="Painwave" data-price="6.00">Añadir al carrito</button>
+                            </div>
                         </div>
                     </article>
                     <article class="product-card">
@@ -135,7 +162,11 @@
                                 <li>Acabado cromado superior</li>
                             </ul>
                             <div class="price">$20.00</div>
-                            <button type="button" class="btn btn-secondary add-cart" data-name="Chrome Fist" data-price="20.00">Añadir al carrito</button>
+                            <div class="product-actions">
+                                <button type="button" class="btn btn-outline add-wishlist" data-name="Chrome Fist">❤️</button>
+                                <button type="button" class="btn btn-outline share-btn" data-name="Chrome Fist" data-url="https://darklinca-defense.com#productos">📤</button>
+                                <button type="button" class="btn btn-secondary add-cart" data-name="Chrome Fist" data-price="20.00">Añadir al carrito</button>
+                            </div>
                         </div>
                     </article>
                     <article class="product-card">
@@ -148,7 +179,11 @@
                                 <li>No disponible para todas las zonas</li>
                             </ul>
                             <div class="price">$15.00</div>
-                            <button type="button" class="btn btn-secondary add-cart" data-name="Spike Titan" data-price="15.00">Añadir al carrito</button>
+                            <div class="product-actions">
+                                <button type="button" class="btn btn-outline add-wishlist" data-name="Spike Titan">❤️</button>
+                                <button type="button" class="btn btn-outline share-btn" data-name="Spike Titan" data-url="https://darklinca-defense.com#productos">📤</button>
+                                <button type="button" class="btn btn-secondary add-cart" data-name="Spike Titan" data-price="15.00">Añadir al carrito</button>
+                            </div>
                         </div>
                     </article>
                     <article class="product-card">
@@ -161,7 +196,11 @@
                                 <li>Confirmación previa</li>
                             </ul>
                             <div class="price">$10.00</div>
-                            <button type="button" class="btn btn-secondary add-cart" data-name="Secure Grip" data-price="10.00">Añadir al carrito</button>
+                            <div class="product-actions">
+                                <button type="button" class="btn btn-outline add-wishlist" data-name="Secure Grip">❤️</button>
+                                <button type="button" class="btn btn-outline share-btn" data-name="Secure Grip" data-url="https://darklinca-defense.com#productos">📤</button>
+                                <button type="button" class="btn btn-secondary add-cart" data-name="Secure Grip" data-price="10.00">Añadir al carrito</button>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -189,6 +228,29 @@
                         <span>03</span>
                         <h3>Revisión previa</h3>
                         <p>Respondemos con condiciones, requisitos y próximos pasos si procede.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonios" class="testimonials">
+            <div class="container">
+                <div class="section-heading">
+                    <h2 class="section-title">Testimonios de <span>clientes</span></h2>
+                    <p>Opiniones de clientes que han confiado en nosotros para su defensa personal responsable.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>"Elegi un taser y es impresionante el ruido que hace jaja , lo mejor de todo que es directo no pasa aduanas ni naa."</p>
+                        <cite>- Cliente de Valladolid</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Me ha impresionado pensaba que seria fragil o tal y es hyperduro y encima es ligero"</p>
+                        <cite>- Cliente de Valladolid</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Quedada puntual del vendedor , encima me sorprendio la variedad de colores que hay y no son tan caros para la ostia que meten , eso si cuidado con los pitufos jaja"</p>
+                        <cite>- Cliente de Valladolid</cite>
                     </div>
                 </div>
             </div>
@@ -257,6 +319,33 @@
                         <summary>¿Tengo que dar mi dirección completa?</summary>
                         <p>No al principio. Para una consulta basta con nombre, contacto y ciudad o zona. La dirección completa solo debería pedirse si se confirma un envío.</p>
                     </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre-nosotros" class="about">
+            <div class="container">
+                <div class="section-heading">
+                    <h2 class="section-title">Sobre <span>nosotros</span></h2>
+                    <p>Conoce nuestra misión y compromiso con la venta responsable de artículos de defensa personal.</p>
+                </div>
+                <div class="about-content">
+                    <p>En DarKlinca Defense nos dedicamos a proporcionar artículos de defensa personal de alta calidad, con un enfoque en la responsabilidad y el cumplimiento de la normativa local. Nuestra prioridad es ofrecer asesoría previa, verificar disponibilidad y promover el uso responsable de estos productos.</p>
+                    <p>Trabajamos exclusivamente con ventas presenciales en Valladolid y alrededores, asegurando que cada cliente reciba la información necesaria y cumpla con los requisitos legales aplicables.</p>
+                    <div class="about-values">
+                        <div class="value-card">
+                            <h4>Responsabilidad</h4>
+                            <p>Promovemos el uso responsable y legal de nuestros productos.</p>
+                        </div>
+                        <div class="value-card">
+                            <h4>Calidad</h4>
+                            <p>Ofrecemos productos duraderos y de alta calidad con garantía incluida.</p>
+                        </div>
+                        <div class="value-card">
+                            <h4>Asesoría</h4>
+                            <p>Proporcionamos consulta previa y soporte personalizado.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -378,6 +467,13 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">DarKlinca Defense</div>
+                <div class="newsletter">
+                    <h4>Suscríbete a nuestro newsletter</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu correo electrónico" required>
+                        <button type="submit" class="btn btn-primary">Suscribir</button>
+                    </form>
+                </div>
                 <div class="footer-social" aria-label="Redes sociales">
                     <a href="#" aria-label="Facebook">FB</a>
                     <a href="#" aria-label="Instagram">IG</a>
@@ -389,6 +485,8 @@
             </div>
         </div>
     </footer>
+
+    <button id="back-to-top" type="button" aria-label="Volver arriba">↑</button>
 
     <script src="script.js"></script>
 </body>

@@ -1,6 +1,9 @@
 const cartKey = 'darklinca_cart';
 let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
+const wishlistKey = 'darklinca_wishlist';
+let wishlist = JSON.parse(localStorage.getItem(wishlistKey)) || [];
+
 const menuToggle = document.querySelector('.menu-toggle');
 const mainMenu = document.getElementById('main-menu');
 const cartButton = document.getElementById('cart-btn');
@@ -96,6 +99,26 @@ function changeQuantity(index, delta) {
 function removeFromCart(index) {
     cart.splice(index, 1);
     updateCart();
+}
+
+function saveWishlist() {
+    localStorage.setItem(wishlistKey, JSON.stringify(wishlist));
+}
+
+function addToWishlist(name) {
+    if (!wishlist.includes(name)) {
+        wishlist.push(name);
+        saveWishlist();
+        showNotification('Producto añadido a la wishlist');
+    } else {
+        showNotification('El producto ya está en la wishlist', 'error');
+    }
+}
+
+function removeFromWishlist(name) {
+    wishlist = wishlist.filter(item => item !== name);
+    saveWishlist();
+    showNotification('Producto removido de la wishlist');
 }
 
 function showCart() {
@@ -290,8 +313,22 @@ document.querySelectorAll('.add-cart').forEach((button) => {
     button.addEventListener('click', () => addToCart(button.dataset.name, button.dataset.price));
 });
 
+document.querySelectorAll('.add-wishlist').forEach((button) => {
+    button.addEventListener('click', () => addToWishlist(button.dataset.name));
+});
+
 document.querySelectorAll('.card-video').forEach((button) => {
     button.addEventListener('click', () => playVideo(button));
+});
+
+const productSearch = document.getElementById('product-search');
+productSearch?.addEventListener('input', (event) => {
+    const query = event.target.value.toLowerCase();
+    document.querySelectorAll('.product-card').forEach((card) => {
+        const name = card.querySelector('h3').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+        card.style.display = name.includes(query) || desc.includes(query) ? '' : 'none';
+    });
 });
 
 cartButton?.addEventListener('click', showCart);
@@ -307,14 +344,95 @@ contactForm?.addEventListener('submit', (event) => {
     prepareInquiry(false);
 });
 
+document.querySelector('.newsletter-form')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = event.target.querySelector('input').value;
+    if (email) {
+        showNotification('¡Gracias por suscribirte! Te mantendremos informado.');
+        event.target.reset();
+    }
+});
+
+// Real-time form validation
+contactForm?.addEventListener('input', (event) => {
+    const field = event.target;
+    const errorElement = field.parentElement.querySelector('.field-error');
+    if (errorElement) errorElement.remove();
+    
+    let error = '';
+    if (field.name === 'email' && field.value && !/\S+@\S+\.\S+/.test(field.value)) {
+        error = 'Correo inválido';
+    } else if (field.name === 'phone' && field.value && !/^\+?\d{9,}$/.test(field.value)) {
+        error = 'Teléfono inválido';
+    }
+    
+    if (error) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'field-error';
+        errorDiv.textContent = error;
+        field.parentElement.appendChild(errorDiv);
+    }
+});
+
+document.querySelectorAll('.share-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+        const name = button.dataset.name;
+        const url = button.dataset.url;
+        if (navigator.share) {
+            navigator.share({
+                title: name,
+                text: `Mira este producto: ${name}`,
+                url: url
+            });
+        } else {
+            navigator.clipboard.writeText(`${name} - ${url}`);
+            showNotification('Enlace copiado al portapapeles');
+        }
+    });
+});
+
+const compareButton = document.getElementById('compare-btn');
+const compareModal = document.getElementById('compare-modal');
+const closeCompare = document.getElementById('close-compare');
+const clearCompare = document.getElementById('clear-compare');
+
+compareButton?.addEventListener('click', showCompare);
+closeCompare?.addEventListener('click', hideCompare);
+clearCompare?.addEventListener('click', () => {
+    compare = [];
+    saveCompare();
+    updateCompareCount();
+    hideCompare();
+});
+
 window.addEventListener('click', (event) => {
     if (event.target === cartModal) hideCart();
 });
 
 window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && cartModal.getAttribute('aria-hidden') === 'false') {
-        hideCart();
+    if (event.key === 'Escape') {
+        if (cartModal.getAttribute('aria-hidden') === 'false') hideCart();
     }
 });
 
 updateCart();
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+    });
+}
+
+// Back to top
+const backToTopButton = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopButton.classList.add('show');
+    } else {
+        backToTopButton.classList.remove('show');
+    }
+});
+backToTopButton?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
